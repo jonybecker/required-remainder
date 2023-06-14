@@ -1,9 +1,10 @@
 <?php
 
-declare(strict_types=1);
+namespace Tests;
 
-namespace tests;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
-class TestCase extends \PHPUnit\Framework\TestCase
+abstract class TestCase extends BaseTestCase
 {
+    use CreatesApplication;
 }
