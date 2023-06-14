@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\MaximumDividend;
-use App\Presenter\CalculationTaskParser;
+use App\Http\Traits\SolveSingleTask;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class RequiredRemainderController extends Controller
 {
+    use SolveSingleTask;
+
     public function __invoke(Request $request): Response
     {
         $tasks = $request->post('tasks');
@@ -34,15 +35,5 @@ class RequiredRemainderController extends Controller
         }
 
         return new Response(['solved' => $solvedTasks], Response::HTTP_CREATED);
-    }
-
-    private function solveSingleTask(string $task)
-    {
-
-        $taskDto = CalculationTaskParser::createFromString($task);
-
-        $maximumDividend = MaximumDividend::loadTask($taskDto);
-
-        return (string)$maximumDividend->calculate();
     }
 }

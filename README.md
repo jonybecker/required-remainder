@@ -49,6 +49,14 @@ composer install
 ./vendor/bin/sail up -d
 ```
 ### Run
+#### Web
+Navigate to http://localhost in your browser.
+
+Enter test cases and submit them.
+
+An example is preloaded.
+
+#### API
 Postman collection is available in the docs directory.
 
 
@@ -74,4 +82,3 @@ Curl example:
 
 **Memory**: 4.00 MB
 
-**Coverage on new files**: 100%
