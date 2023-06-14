@@ -46,44 +46,39 @@ In the first test case of the example, the answer is `12339 = 7 ⋅ 1762 + 5` (t
 ### Initial setup
 ```bash
 composer install
+./vendor/bin/sail up -d
 ```
 ### Run
-```bash
-php index.php
-```
-You will be asked to enter the number of test cases. 
-Then you will be asked to enter the test cases in the format `x y n` (e.g. `7 5 12345`).
+#### Web
+Navigate to http://localhost in your browser.
 
-Example:
+Enter test cases and submit them.
+
+An example is preloaded.
+
+#### API
+Postman collection is available in the docs directory.
+
+
+Curl example:
 ```bash
-> php index.php
-Enter the amount of tests cases:
-7
-Enter test case #1:
-7 5 12345
-Enter test case #2:
-5 0 4
-Enter test case #3:
-10 5 15
-Enter test case #4:
-17 8 54321
-Enter test case #5:
-499999993 9 1000000000
-Enter test case #6:
-10 5 187
-Enter test case #7:
-2 0 999999999
-Your result is:
-12339
-0
-15
-54306
-999999995
+> curl --location --request POST 'http://localhost/api/required-remainder' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "tasks": [
+        "7 5 12345",
+        "5 0 4",
+        "10 5 15",
+        "17 8 54321",
+        "499999993 9 1000000000",
+        "10 5 187",
+        "2 0 999999999"
+    ]
+}'
 ```
 
 ## Results
-**Execution Time**: 0.002 sec
+**Execution Time**: 12-15 ms
 
 **Memory**: 4.00 MB
 
-**Coverage**: 100%
